@@ -1,0 +1,61 @@
+# The camera discription file of the robot in habitat
+
+rgbcamera:
+
+  # python class to initiate the node instance, there are: "Robot", "DepthCamera", "RGBCamera", "SemanticCamera", "LiDAR", "Laser"
+  # you can also implement a new sensor class in habitat_ros/script/habitat_ros/sensors/...
+  # and import it in habitat_ros/script/habitat_ros/sensors/__init__.py
+  type: "RGBCamera"
+
+  name: "rgbcamera"
+  frame: "/camera_link"
+  topic: "/zed2/zed_node/rgb/image_rect_color"
+  topic_frame: "/camera" # explicitly set the msg's frame
+  position: [0.175, 0.0, 0.83]
+  publish_transfromation: True
+  pub_compressed: True #publish compressed image
+  
+  # actuation topics and corresponding actions
+  actuation:
+    topics: ["/camera/tilt"]
+    actions: ["look_up"]
+
+  # extra child links
+  tf_links:
+    camera_link:
+      frame: "/camera"
+      position: [0.0, 0.0, 0.0]
+      orientation: [ -1.57, 0.0, -1.57]
+
+  camera_info_topic: "/camera_info"
+  sensor_info:
+  
+    rate: 20
+    
+    hfov: 90
+    far: 100000.0
+    near: 0.1
+    
+    image_width: 640
+    image_height: 480
+    camera_name: camera
+
+    distortion_model: plumb_bob
+    distortion_coefficients: 
+      rows: 1
+      cols: 5
+      data: [0, 0, 0, 0, 0]
+    rectification_matrix:
+      rows: 3
+      cols: 3
+      data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+
+    # Not used, calculated by the spec of camera
+    camera_matrix:
+      rows: 3
+      cols: 3
+      data: [300, 0, 300, 0, 400, 400, 0, 0, 1]
+    projection_matrix:
+      rows: 3
+      cols: 4
+      data: [300, 0, 300, 0, 0, 400, 400, 0, 0, 0, 1, 0]

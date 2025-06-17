@@ -1,0 +1,44 @@
+# The camera discription file of the robot in habitat
+
+depthcamera:
+  type: "DepthCamera"
+  name: "depthcamera"
+  frame: "/camera_link"
+  topic: "/zed2/zed_node/depth/depth_registered"
+  topic_frame: "/camera" # explicitly set the msg's frame
+  position: [0.175, 0.0, 0.83]
+  publish_transfromation: False
+
+  # actuation topics and corresponding actions
+  actuation:
+    topics: ["/camera/tilt"]
+    actions: ["look_up"]
+
+  sensor_info:
+  
+    rate: 5
+    
+    hfov: 90
+    far: 100000.0
+    near: 0.1
+    
+    image_width: 640
+    image_height: 480
+    camera_name: camera
+    camera_matrix:
+      rows: 3
+      cols: 3
+      data: [300, 0, 300, 0, 400, 400, 0, 0, 1]
+    distortion_model: plumb_bob
+    distortion_coefficients: 
+      rows: 1
+      cols: 5
+      data: [0, 0, 0, 0, 0]
+    rectification_matrix:
+      rows: 3
+      cols: 3
+      data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+    projection_matrix:
+      rows: 3
+      cols: 4
+      data: [300, 0, 300, 0, 0, 400, 400, 0, 0, 0, 1, 0]
