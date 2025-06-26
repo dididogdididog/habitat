@@ -52,18 +52,18 @@ oreo: # robot_name
 
   # odometry configuration
   odom:
-    topic: "/odom"
-    frame: "/odom"
+    topic: "/odom_hab"
+    frame: "/odom_hab"
     child_frame: "/base_link"
 
     # the covariance matrix, currently randomly setted, could be modified if needed
     vel_cov: [
-      [1.0,0.03,0.0,0.0,0.0,-0.02],
-      [0.03,1.0,0.0,0.0,0.0,0.06],
+      [1.0,0.0,0.0,0.0,0.0,0.0],
+      [0.0,1.0,0.0,0.0,0.0,0.0],
       [0.0,0.0,1.0,0.0,0.0,0.0],
       [0.0,0.0,0.0,1.0,0.0,0.0],
       [0.0,0.0,0.0,0.0,1.0,0.0],
-      [-0.02,0.06,0.0,0.0,0.0,1.0],]
+      [0.0,0.0,0.0,0.0,0.0,1.0],]
     
   # extra tf links to be published, note that their parent is this node's frame 
   tf_links:

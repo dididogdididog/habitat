@@ -123,7 +123,7 @@ class HabitatSimROS:
 
             self.last_update = new_time
 
-        self.robot.publishOdom(self.last_update)
+        #self.robot.publishOdom(self.last_update)
         self.ms_sleep.sleep()
 
 
